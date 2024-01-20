@@ -1,0 +1,36 @@
+class Solution {
+    public int countBalls(int lowLimit, int highLimit) {
+        
+        int l=highLimit-lowLimit+1;
+        if(l==1){
+            return 1;
+        }
+        int arr[]=new int[l];
+        int sum=0;
+       for(int i=lowLimit;i<=highLimit;i++){
+           int n=i;
+           while(n>0){
+               sum=sum+(n%10);
+               n=n/10;
+           }
+        arr[i-lowLimit]=sum;
+        sum=0;
+
+       }
+       int c=1;
+       int most=0;
+       Arrays.sort(arr);
+       for(int i=1;i<l;i++){
+           if(arr[i-1]==arr[i]){
+               c++;
+           }
+           else{
+               c=1;
+           }
+           if(c>most){
+               most=c;
+           }
+       }
+       return most;
+    }
+}
